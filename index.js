@@ -1,11 +1,13 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
+const morgan = require('morgan')
 const SnowTransfer = require('snowtransfer')
 const config = require('./config/config.json')
 const snowtransfer = new SnowTransfer(config.token, config.options)
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
+app.use(morgan('tiny'))
 app.use((req, res, next) => {
   req.rest = snowtransfer
   if (req.headers['X-Audit-Log-Reason']) {

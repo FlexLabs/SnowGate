@@ -3,6 +3,7 @@ const wrapRequest = async (snowtransfer, resource, method, res, ...args) => {
     const result = await snowtransfer[resource][method](...args)
     return res.status(200).json(result)
   } catch (e) {
+    console.error(e);
     const status = e.response ? e.response.status : 500
     const response = {
       status,
