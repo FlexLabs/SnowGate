@@ -7,7 +7,7 @@ const config = require('./config/config.json')
 const snowtransfer = new SnowTransfer(config.token, config.options)
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
-app.use(morgan('tiny'))
+app.use(morgan())
 app.use((req, res, next) => {
   req.rest = snowtransfer
   if (req.headers['X-Audit-Log-Reason']) {
